@@ -13,7 +13,7 @@ function Rotas() {
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/filmes" element={<Filmes />} />
+                <Route path="/filmes/:id" element={<Filmes />} />
                 <Route path="/favoritos" element={<Favoritos />} />
 
                 <Route path="*" element={<Erro />} />

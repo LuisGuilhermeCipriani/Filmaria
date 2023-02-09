@@ -7,6 +7,7 @@ import './home.css';
 function Home() {
 
     const [filmes, setFilmes] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function loadApi() {
@@ -18,20 +19,29 @@ function Home() {
                 }
             })
             setFilmes(response.data.results.slice(0, 10));
+            setLoading(false);
         }
 
         loadApi();
     }, []);
 
+    if(loading){
+        return(
+            <div className="loading">
+                <h2>Carregando filmes...</h2>
+            </div>
+        );
+    }
+
     return (
         <div className="container">
-            <div className="lista_filmes">
+            <div className="lista-filmes">
                 {filmes.map((item) => {
                     return (
                         <article key={item.id}>
-                            <strong>{item.original_title}</strong>
-                            <img src={`https://image.tmdb.org/t/p/original/${item.poster_path}`} alt={item.title} />
-                            <Link to={`/filmes/${item.id}`}>Acessar</Link>
+                            <strong className="titulo">{item.original_title}</strong>
+                            <img className="imagem" src={`https://image.tmdb.org/t/p/original/${item.poster_path}`} alt={item.title} />
+                            <Link className="btn-acessar" to={`/filmes/${item.id}`}>Acessar</Link>
                         </article>
                     )
                 })}
