@@ -10,7 +10,7 @@ import Header from "./components/header/header";
 function Rotas() {
     return (
         <BrowserRouter>
-            <Header />
+            <Header/>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/filmes/:id" element={<Filmes />} />
